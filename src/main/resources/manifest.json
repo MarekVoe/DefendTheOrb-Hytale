@@ -1,0 +1,7 @@
+{
+  "Group": "dev.marekvoe",
+  "Name": "DefendTheOrb",
+  "Version": "1.0.0",
+  "Main": "dev.marekvoe.defendtheorb.DefendTheOrb",
+  "Description": "A Minecraft mod where players defend an orb from waves of enemies."
+}
