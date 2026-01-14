@@ -25,9 +25,11 @@ public class DefendTheOrb extends JavaPlugin {
     }
 
     private void registerListeners() {
-        getEventRegistry().registerGlobal(PlayerReadyEvent.class, new PlayerListener(this)::onReadyPlayer);
-        getEventRegistry().registerGlobal(PlayerDisconnectEvent.class, new PlayerListener(this)::onPlayerDisconnect);
-        getEventRegistry().registerGlobal(AddPlayerToWorldEvent.class, new PlayerListener(this)::handleAddPlayerToWorld);
+        PlayerListener playerListener = new PlayerListener(this);
+
+        getEventRegistry().registerGlobal(PlayerReadyEvent.class, playerListener::onReadyPlayer);
+        getEventRegistry().registerGlobal(PlayerDisconnectEvent.class, playerListener::onPlayerDisconnect);
+        getEventRegistry().registerGlobal(AddPlayerToWorldEvent.class, playerListener::handleAddPlayerToWorld);
     }
 
     private void registerManagers() {
