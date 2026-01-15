@@ -5,6 +5,7 @@ import com.hypixel.hytale.server.core.event.events.player.PlayerDisconnectEvent;
 import com.hypixel.hytale.server.core.event.events.player.PlayerReadyEvent;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
+import dev.marekvoe.defendtheorb.commands.DefendTheOrbCommand;
 import dev.marekvoe.defendtheorb.game.GameManager;
 import dev.marekvoe.defendtheorb.game.GameState;
 import dev.marekvoe.defendtheorb.listeners.PlayerListener;
@@ -21,7 +22,7 @@ public class DefendTheOrb extends JavaPlugin {
     }
 
     private void registerCommands() {
-
+        getCommandRegistry().registerCommand(new DefendTheOrbCommand("dto", "Main Defend the orb command"));
     }
 
     private void registerListeners() {
