@@ -2,14 +2,14 @@ package dev.marekvoe.defendtheorb.listeners;
 
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
-import com.hypixel.hytale.component.system.RefSystem;
 import com.hypixel.hytale.math.vector.Transform;
 import com.hypixel.hytale.server.core.Message;
-import com.hypixel.hytale.server.core.entity.Entity;
 import com.hypixel.hytale.server.core.entity.entities.Player;
 import com.hypixel.hytale.server.core.event.events.player.AddPlayerToWorldEvent;
+import com.hypixel.hytale.server.core.event.events.player.DrainPlayerFromWorldEvent;
 import com.hypixel.hytale.server.core.event.events.player.PlayerDisconnectEvent;
 import com.hypixel.hytale.server.core.event.events.player.PlayerReadyEvent;
+import com.hypixel.hytale.server.core.modules.accesscontrol.ban.Ban;
 import com.hypixel.hytale.server.core.modules.entity.teleport.Teleport;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.Universe;
@@ -30,9 +30,10 @@ public class PlayerListener {
     public void onReadyPlayer(PlayerReadyEvent event) {
         Player player = event.getPlayer();
         Universe universe = Universe.get();
+        Ref<EntityStore> playerRef = player.getReference();
 
         if (!plugin.getGameManager().getGameState().canJoin()) {
-            // TODO: Kick player if the game state does not allow joining
+            // TODO: Kick palyer when game has already started
             return;
         }
         for (PlayerRef players : universe.getPlayers()) {
@@ -40,6 +41,7 @@ public class PlayerListener {
         }
 
         // TODO: Load world from config file not the world that player currently is in
+        // Note: maybe transfer all the teleport logic to Util.java class or make PlayerManager.java class and do all the player stuff there
         World world = player.getWorld();
         if (world == null) return;
         world.execute(() -> {
