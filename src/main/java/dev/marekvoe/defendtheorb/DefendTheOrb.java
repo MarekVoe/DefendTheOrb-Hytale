@@ -22,7 +22,7 @@ public class DefendTheOrb extends JavaPlugin {
     }
 
     private void registerCommands() {
-        getCommandRegistry().registerCommand(new DefendTheOrbCommand("dto", "Main Defend the orb command"));
+        getCommandRegistry().registerCommand(new DefendTheOrbCommand());
     }
 
     private void registerListeners() {
